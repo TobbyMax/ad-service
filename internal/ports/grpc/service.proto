@@ -1,0 +1,92 @@
+syntax = "proto3";
+
+package ad;
+option go_package = "lesson9/homework/internal/ports/grpc";
+import "google/protobuf/empty.proto";
+
+service AdService {
+  rpc CreateAd(CreateAdRequest) returns (AdResponse) {}
+  rpc ChangeAdStatus(ChangeAdStatusRequest) returns (AdResponse) {}
+  rpc UpdateAd(UpdateAdRequest) returns (AdResponse) {}
+  rpc GetAd(GetAdRequest) returns (AdResponse) {}
+  rpc DeleteAd(DeleteAdRequest) returns (google.protobuf.Empty) {}
+  rpc ListAds(ListAdRequest) returns (ListAdResponse) {}
+  rpc CreateUser(CreateUserRequest) returns (UserResponse) {}
+  rpc UpdateUser(UpdateUserRequest) returns (UserResponse) {}
+  rpc GetUser(GetUserRequest) returns (UserResponse) {}
+  rpc DeleteUser(DeleteUserRequest) returns (google.protobuf.Empty) {}
+}
+
+message CreateAdRequest {
+  string title = 1;
+  string text = 2;
+  optional int64 user_id = 3;
+}
+
+message ChangeAdStatusRequest {
+  optional int64 ad_id = 1;
+  optional int64 user_id = 2;
+  bool published = 3;
+}
+
+message UpdateAdRequest {
+  optional int64 ad_id = 1;
+  string title = 2;
+  string text = 3;
+  optional int64 user_id = 4;
+}
+
+message AdResponse {
+  int64 id = 1;
+  string title = 2;
+  string text = 3;
+  int64 author_id = 4;
+  bool published = 5;
+  string date_created = 6;
+  string date_changed = 7;
+}
+
+message ListAdResponse {
+  repeated AdResponse list = 1;
+}
+
+message CreateUserRequest {
+  string name = 1;
+  string email = 2;
+}
+
+message UserResponse {
+  int64 id = 1;
+  string name = 2;
+  string email = 3;
+}
+
+message GetUserRequest {
+  optional int64 id = 1;
+}
+
+message DeleteUserRequest {
+  optional int64 id = 1;
+}
+
+message DeleteAdRequest {
+  optional int64 ad_id = 1;
+  optional int64 author_id = 2;
+}
+
+message GetAdRequest {
+  optional int64 ad_id = 1;
+}
+
+message ListAdRequest {
+  optional bool  published = 1;
+  optional int64 user_id = 2;
+  optional string date = 3;
+  optional string title = 4;
+}
+
+message UpdateUserRequest {
+  optional int64 id = 1;
+  string name = 2;
+  string email = 3;
+}
