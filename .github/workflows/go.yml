@@ -75,12 +75,14 @@ jobs:
           sudo apt-get install zip
           zip -r app-builds.zip app_*.o
       
-      - name: Upload README.md to Google Drive
-        uses: Jodebu/upload-to-drive@master
+      - name: Upload to Google Drive
+        uses: adityak74/google-drive-upload-git-action@main
         with:
-          target: app-builds.zip
-          credentials: secrets.DRIVE_CREDENTIALS
-          folder:  secrets.DRIVE_FOLDER_ID
+          credentials: ${{ secrets.DRIVE_CREDENTIALS }}
+          filename: "app-builds.zip"
+          folderId: ${{ secrets.DRIVE_FOLDER_ID }}
+          name: "app-builds.zip"
+          overwrite: "true"
         
           
       - name: Send message to telegram
@@ -96,3 +98,5 @@ jobs:
             Repository: ${{ github.repository }}
 
             See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
+            
+            Google Drive: ${{ secrets.DRIVE_LINK }}
