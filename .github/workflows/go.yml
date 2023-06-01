@@ -69,27 +69,33 @@ jobs:
         with:
           name: app_matrix
           
+      - name: Archive files
+        run: |
+          sudo apt-get update
+          sudo apt-get install zip
+          zip -r archive.zip app_matrix
+      
       - name: Upload to Google Drive
         uses: adityak74/google-drive-upload-git-action@main
         with:
           credentials: ${{ secrets.DRIVE_CREDENTIALS }}
-          filename: "app_*.o"
+          filename: "archive.zip"
           folderId: ${{ secrets.DRIVE_FOLDER_ID }}
-          name: "app_*.o" # optional string
+          name: "archive.zip" # optional string
           overwrite: "true" # optional boolean
           
-      - name: Make Directory Structure
-        run: |
-          mkdir -p w/x/y
-          date +%s > w/x/y/z
-      - name: Mirror Directory Structure
-        uses: adityak74/google-drive-upload-git-action@main
-        with:
-          credentials: ${{ secrets.DRIVE_CREDENTIALS }}
-          filename: w/x/y/z
-          folderId: ${{ secrets.DRIVE_FOLDER_ID }}
-          overwrite: "true"
-          mirrorDirectoryStructure: "true"
+#       - name: Make Directory Structure
+#         run: |
+#           mkdir -p w/x/y
+#           date +%s > w/x/y/z
+#       - name: Mirror Directory Structure
+#         uses: adityak74/google-drive-upload-git-action@main
+#         with:
+#           credentials: ${{ secrets.DRIVE_CREDENTIALS }}
+#           filename: w/x/y/z
+#           folderId: ${{ secrets.DRIVE_FOLDER_ID }}
+#           overwrite: "true"
+#           mirrorDirectoryStructure: "true"
           
       - name: Send message to telegram
         uses: appleboy/telegram-action@master
