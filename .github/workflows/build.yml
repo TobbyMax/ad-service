@@ -90,7 +90,7 @@ jobs:
           filename: "app-builds.zip"
           folderId: ${{ secrets.DRIVE_FOLDER_ID }}
           name: "app-builds.zip"
-          overwrite: "true"
+#           overwrite: "true"
         
           
       - name: Send message to telegram
