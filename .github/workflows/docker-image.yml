@@ -1,12 +1,8 @@
 name: Build & Publish Docker image
 
 on:
-#   release:
-#     types: [published]
-  push:
-    branches: [ "main", "master", "develop" ]
-  pull_request:
-    branches: [ "main", "master", "develop" ]
+  release:
+    types: [published]
 
 jobs:
   push_to_registry:
