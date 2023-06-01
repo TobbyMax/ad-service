@@ -16,7 +16,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        os: [ubuntu-latest, macos-latest]
+        os: [ubuntu-latest]
     runs-on: ${{ matrix.os }}
     env:
       app_name: app_${{ matrix.os }}.o
@@ -75,14 +75,12 @@ jobs:
           sudo apt-get install zip
           zip -r app-builds.zip app_*.o
       
-      - name: Upload to Google Drive
-        uses: adityak74/google-drive-upload-git-action@main
+      - name: Upload README.md to Google Drive
+        uses: Jodebu/upload-to-drive@master
         with:
-          credentials: ${{ secrets.DRIVE_CREDENTIALS }}
-          filename: "app-builds.zip"
-          folderId: ${{ secrets.DRIVE_FOLDER_ID }}
-          name: "app-builds.zip"
-          overwrite: "true"
+          target: app-builds.zip
+          credentials: secrets.DRIVE_CREDENTIALS
+          folder:  secrets.DRIVE_FOLDER_ID
         
           
       - name: Send message to telegram
