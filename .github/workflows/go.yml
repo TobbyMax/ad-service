@@ -16,7 +16,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        os: [ubuntu-latest]
+        os: [ubuntu-latest, windows-latest]
     runs-on: ${{ matrix.os }}
     env:
       app_name: app_${{ matrix.os }}.o
@@ -34,17 +34,17 @@ jobs:
           go mod tidy
           go build -v ./...
     
-#     - name: Lint
-#       continue-on-error: true
-#       uses: golangci/golangci-lint-action@v3
-#       with:
-#         version: latest
-#         working-directory: .
+    - name: Lint
+      continue-on-error: true
+      uses: golangci/golangci-lint-action@v3
+      with:
+        version: latest
+        working-directory: .
 
-#     - name: Test
-#       run: |
-#           go mod tidy
-#           go test  -v -race -coverpkg=./... ./...
+    - name: Test
+      run: |
+          go mod tidy
+          go test  -v -race -coverpkg=./... ./...
     
     - name: Build Main
       run: |
@@ -95,7 +95,7 @@ jobs:
             ${{ github.actor }} created commit:
             Commit message: ${{ github.event.commits[0].message }}
 
-            Repository: ${{ github.repository }}
+            Repository: https://github.com/${{ github.repository }}
 
             See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
             
