@@ -98,7 +98,7 @@ func (suite *HTTPMockSuite) TestHandler_CreateUser() {
 			},
 		},
 		{
-			name: "github.com/TobbyMax/ad-service.git/internal error",
+			name: "internal error",
 			args: args{
 				nickname: "Mac Miller",
 				email:    "swimming@circles.com",
@@ -107,7 +107,7 @@ func (suite *HTTPMockSuite) TestHandler_CreateUser() {
 			needMock: true,
 			wantErr:  true,
 			checkErr: func(err error) bool {
-				suite.ErrorIs(err, Errgithub.com/TobbyMax/ad-service.git/internal)
+				suite.ErrorIs(err, ErrInternal)
 				return true
 			},
 		},
@@ -190,7 +190,7 @@ func (suite *HTTPMockSuite) TestHandler_GetUser() {
 			},
 		},
 		{
-			name: "github.com/TobbyMax/ad-service.git/internal error",
+			name: "internal error",
 			args: args{
 				id:  1,
 				err: ErrMock,
@@ -198,7 +198,7 @@ func (suite *HTTPMockSuite) TestHandler_GetUser() {
 			needMock: true,
 			wantErr:  true,
 			checkErr: func(err error) bool {
-				suite.ErrorIs(err, Errgithub.com/TobbyMax/ad-service.git/internal)
+				suite.ErrorIs(err, ErrInternal)
 				return true
 			},
 		},
@@ -292,7 +292,7 @@ func (suite *HTTPMockSuite) TestHandler_UpdateUser() {
 			},
 		},
 		{
-			name: "github.com/TobbyMax/ad-service.git/internal error",
+			name: "internal error",
 			args: args{
 				id:       2009,
 				nickname: "Mac Miller",
@@ -302,7 +302,7 @@ func (suite *HTTPMockSuite) TestHandler_UpdateUser() {
 			needMock: true,
 			wantErr:  true,
 			checkErr: func(err error) bool {
-				suite.ErrorIs(err, Errgithub.com/TobbyMax/ad-service.git/internal)
+				suite.ErrorIs(err, ErrInternal)
 				return true
 			},
 		},
@@ -428,7 +428,7 @@ func (suite *HTTPMockSuite) TestHandler_DeleteUser() {
 			},
 		},
 		{
-			name: "github.com/TobbyMax/ad-service.git/internal error",
+			name: "internal error",
 			args: args{
 				id:  1,
 				err: ErrMock,
@@ -436,7 +436,7 @@ func (suite *HTTPMockSuite) TestHandler_DeleteUser() {
 			needMock: true,
 			wantErr:  true,
 			checkErr: func(err error) bool {
-				suite.ErrorIs(err, Errgithub.com/TobbyMax/ad-service.git/internal)
+				suite.ErrorIs(err, ErrInternal)
 				return true
 			},
 		},
@@ -529,7 +529,7 @@ func (suite *HTTPMockSuite) TestHandler_CreateAd() {
 			},
 		},
 		{
-			name: "github.com/TobbyMax/ad-service.git/internal error",
+			name: "internal error",
 			args: args{
 				title: "DAMN.",
 				text:  "by Kendrick Lamar",
@@ -538,7 +538,7 @@ func (suite *HTTPMockSuite) TestHandler_CreateAd() {
 			needMock: true,
 			wantErr:  true,
 			checkErr: func(err error) bool {
-				suite.ErrorIs(err, Errgithub.com/TobbyMax/ad-service.git/internal)
+				suite.ErrorIs(err, ErrInternal)
 				return true
 			},
 		},
@@ -620,7 +620,7 @@ func (suite *HTTPMockSuite) TestHandler_GetAd() {
 			},
 		},
 		{
-			name: "github.com/TobbyMax/ad-service.git/internal error",
+			name: "internal error",
 			args: args{
 				id:  2009,
 				err: ErrMock,
@@ -628,7 +628,7 @@ func (suite *HTTPMockSuite) TestHandler_GetAd() {
 			needMock: true,
 			wantErr:  true,
 			checkErr: func(err error) bool {
-				suite.ErrorIs(err, Errgithub.com/TobbyMax/ad-service.git/internal)
+				suite.ErrorIs(err, ErrInternal)
 				return true
 			},
 		},
@@ -740,7 +740,7 @@ func (suite *HTTPMockSuite) TestHandler_UpdateAd() {
 			},
 		},
 		{
-			name: "github.com/TobbyMax/ad-service.git/internal error",
+			name: "internal error",
 			args: args{
 				id:    2009,
 				title: "DAMN.",
@@ -751,7 +751,7 @@ func (suite *HTTPMockSuite) TestHandler_UpdateAd() {
 			needMock: true,
 			wantErr:  true,
 			checkErr: func(err error) bool {
-				suite.ErrorIs(err, Errgithub.com/TobbyMax/ad-service.git/internal)
+				suite.ErrorIs(err, ErrInternal)
 				return true
 			},
 		},
@@ -877,7 +877,7 @@ func (suite *HTTPMockSuite) TestHandler_ChangeAdStatus() {
 			},
 		},
 		{
-			name: "github.com/TobbyMax/ad-service.git/internal error",
+			name: "internal error",
 			args: args{
 				id:        2009,
 				published: true,
@@ -887,7 +887,7 @@ func (suite *HTTPMockSuite) TestHandler_ChangeAdStatus() {
 			needMock: true,
 			wantErr:  true,
 			checkErr: func(err error) bool {
-				suite.ErrorIs(err, Errgithub.com/TobbyMax/ad-service.git/internal)
+				suite.ErrorIs(err, ErrInternal)
 				return true
 			},
 		},
@@ -1006,7 +1006,7 @@ func (suite *HTTPMockSuite) TestHandler_DeleteAd() {
 			},
 		},
 		{
-			name: "github.com/TobbyMax/ad-service.git/internal error",
+			name: "internal error",
 			args: args{
 				id:  2009,
 				uid: 13,
@@ -1015,7 +1015,7 @@ func (suite *HTTPMockSuite) TestHandler_DeleteAd() {
 			needMock: true,
 			wantErr:  true,
 			checkErr: func(err error) bool {
-				suite.ErrorIs(err, Errgithub.com/TobbyMax/ad-service.git/internal)
+				suite.ErrorIs(err, ErrInternal)
 				return true
 			},
 		},
@@ -1108,14 +1108,14 @@ func (suite *HTTPMockSuite) TestHandler_Filter() {
 			wantErr:  false,
 		},
 		{
-			name: "github.com/TobbyMax/ad-service.git/internal error",
+			name: "internal error",
 			args: args{
 				err: ErrMock,
 			},
 			needMock: true,
 			wantErr:  true,
 			checkErr: func(err error) bool {
-				suite.ErrorIs(err, Errgithub.com/TobbyMax/ad-service.git/internal)
+				suite.ErrorIs(err, ErrInternal)
 				return true
 			},
 		},

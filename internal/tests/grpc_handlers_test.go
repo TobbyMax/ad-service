@@ -122,7 +122,7 @@ func (suite *GRPCMockSuite) TestHandler_CreateUser() {
 			expectedError: ErrValidationMock,
 		},
 		{
-			name: "github.com/TobbyMax/ad-service.git/internal error",
+			name: "internal error",
 			args: args{
 				nickname: "Mac Miller",
 				email:    "swimming@circles.com",
@@ -130,7 +130,7 @@ func (suite *GRPCMockSuite) TestHandler_CreateUser() {
 			},
 			needMock:      true,
 			wantErr:       true,
-			expectedError: ErrMockgithub.com/TobbyMax/ad - service.git/internal,
+			expectedError: ErrMockInternal,
 		},
 	}
 	for _, tc := range tests {
@@ -198,14 +198,14 @@ func (suite *GRPCMockSuite) TestHandler_GetUser() {
 			expectedError: ErrUserNotFound,
 		},
 		{
-			name: "github.com/TobbyMax/ad-service.git/internal error",
+			name: "internal error",
 			args: args{
 				id:  1,
 				err: ErrMock,
 			},
 			needMock:      true,
 			wantErr:       true,
-			expectedError: ErrMockgithub.com/TobbyMax/ad - service.git/internal,
+			expectedError: ErrMockInternal,
 		},
 	}
 	for _, tc := range tests {
@@ -290,7 +290,7 @@ func (suite *GRPCMockSuite) TestHandler_UpdateUser() {
 			expectedError: ErrUserNotFound,
 		},
 		{
-			name: "github.com/TobbyMax/ad-service.git/internal error",
+			name: "internal error",
 			args: args{
 				id:       2009,
 				nickname: "Mac Miller",
@@ -299,7 +299,7 @@ func (suite *GRPCMockSuite) TestHandler_UpdateUser() {
 			},
 			needMock:      true,
 			wantErr:       true,
-			expectedError: ErrMockgithub.com/TobbyMax/ad - service.git/internal,
+			expectedError: ErrMockInternal,
 		},
 		{
 			name: "bad request",
@@ -396,14 +396,14 @@ func (suite *GRPCMockSuite) TestHandler_DeleteUser() {
 			expectedError: ErrUserNotFound,
 		},
 		{
-			name: "github.com/TobbyMax/ad-service.git/internal error",
+			name: "internal error",
 			args: args{
 				id:  1,
 				err: ErrMock,
 			},
 			needMock:      true,
 			wantErr:       true,
-			expectedError: ErrMockgithub.com/TobbyMax/ad - service.git/internal,
+			expectedError: ErrMockInternal,
 		},
 	}
 	for _, tc := range tests {
@@ -489,7 +489,7 @@ func (suite *GRPCMockSuite) TestHandler_CreateAd() {
 			expectedError: ErrMissingArgument,
 		},
 		{
-			name: "github.com/TobbyMax/ad-service.git/internal error",
+			name: "internal error",
 			args: args{
 				uid:   2009,
 				title: "DAMN.",
@@ -498,7 +498,7 @@ func (suite *GRPCMockSuite) TestHandler_CreateAd() {
 			},
 			needMock:      true,
 			wantErr:       true,
-			expectedError: ErrMockgithub.com/TobbyMax/ad - service.git/internal,
+			expectedError: ErrMockInternal,
 		},
 	}
 	for _, tc := range tests {
@@ -574,14 +574,14 @@ func (suite *GRPCMockSuite) TestHandler_GetAd() {
 			expectedError: ErrMissingArgument,
 		},
 		{
-			name: "github.com/TobbyMax/ad-service.git/internal error",
+			name: "internal error",
 			args: args{
 				id:  2009,
 				err: ErrMock,
 			},
 			needMock:      true,
 			wantErr:       true,
-			expectedError: ErrMockgithub.com/TobbyMax/ad - service.git/internal,
+			expectedError: ErrMockInternal,
 		},
 	}
 	for _, tc := range tests {
@@ -681,7 +681,7 @@ func (suite *GRPCMockSuite) TestHandler_UpdateAd() {
 			expectedError: ErrGRPCForbidden,
 		},
 		{
-			name: "github.com/TobbyMax/ad-service.git/internal error",
+			name: "internal error",
 			args: args{
 				id:    2009,
 				title: "DAMN.",
@@ -691,7 +691,7 @@ func (suite *GRPCMockSuite) TestHandler_UpdateAd() {
 			},
 			needMock:      true,
 			wantErr:       true,
-			expectedError: ErrMockgithub.com/TobbyMax/ad - service.git/internal,
+			expectedError: ErrMockInternal,
 		},
 		{
 			name: "bad request",
@@ -796,7 +796,7 @@ func (suite *GRPCMockSuite) TestHandler_ChangeAdStatus() {
 			expectedError: ErrGRPCForbidden,
 		},
 		{
-			name: "github.com/TobbyMax/ad-service.git/internal error",
+			name: "internal error",
 			args: args{
 				id:        2009,
 				published: true,
@@ -805,7 +805,7 @@ func (suite *GRPCMockSuite) TestHandler_ChangeAdStatus() {
 			},
 			needMock:      true,
 			wantErr:       true,
-			expectedError: ErrMockgithub.com/TobbyMax/ad - service.git/internal,
+			expectedError: ErrMockInternal,
 		},
 		{
 			name: "bad request: no adID",
@@ -912,7 +912,7 @@ func (suite *GRPCMockSuite) TestHandler_DeleteAd() {
 			expectedError: ErrGRPCForbidden,
 		},
 		{
-			name: "github.com/TobbyMax/ad-service.git/internal error",
+			name: "internal error",
 			args: args{
 				id:  2009,
 				uid: 13,
@@ -920,7 +920,7 @@ func (suite *GRPCMockSuite) TestHandler_DeleteAd() {
 			},
 			needMock:      true,
 			wantErr:       true,
-			expectedError: ErrMockgithub.com/TobbyMax/ad - service.git/internal,
+			expectedError: ErrMockInternal,
 		},
 		{
 			name: "bad request: no adId",
@@ -995,14 +995,14 @@ func (suite *GRPCMockSuite) TestHandler_Filter() {
 			wantErr:  false,
 		},
 		{
-			name: "github.com/TobbyMax/ad-service.git/internal error",
+			name: "internal error",
 			args: args{
 				date: "2018-08-03",
 				err:  ErrMock,
 			},
 			needMock:      true,
 			wantErr:       true,
-			expectedError: ErrMockgithub.com/TobbyMax/ad - service.git/internal,
+			expectedError: ErrMockInternal,
 		},
 		{
 			name: "bad request: wrong date format",

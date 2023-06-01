@@ -34,15 +34,14 @@ type adsResponse struct {
 }
 
 var (
-	ErrBadRequest = fmt.Errorf("bad request")
-	ErrForbidden  = fmt.Errorf("forbidden")
-	ErrNotFound   = fmt.Errorf("not found")
-	ErrMock       = fmt.Errorf("mock error")
-	Errgithub.com/TobbyMax/ad-service.git/internal = fmt.Errorf(
-"github.com/TobbyMax/ad-service.git/internal server error"
+	ErrBadRequest       = fmt.Errorf("bad request")
+	ErrForbidden        = fmt.Errorf("forbidden")
+	ErrNotFound         = fmt.Errorf("not found")
+	ErrMock             = fmt.Errorf("mock error")
+	ErrInternal         = fmt.Errorf("internal server error")
+	ErrFailedDependency = fmt.Errorf("failed dependency")
 )
-ErrFailedDependency = fmt.Errorf("failed dependency")
-)
+
 type testClient struct {
 	client  *http.Client
 	baseURL string
@@ -88,8 +87,8 @@ func (tc *testClient) getResponse(req *http.Request, out any) error {
 			return ErrNotFound
 		case http.StatusFailedDependency:
 			return ErrFailedDependency
-		case http.Statusgithub.com/TobbyMax/ad - service.git/internalServerError:
-			return Errgithub.com/TobbyMax/ad - service.git/internal
+		case http.StatusInternalServerError:
+			return ErrInternal
 		}
 		return fmt.Errorf("unexpected status code: %s", resp.Status)
 	}
