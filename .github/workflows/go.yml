@@ -45,10 +45,17 @@ jobs:
           go mod tidy
           go test  -v -race -coverpkg=./... ./...
     
-    - name: Build Main
+    - name: Build Object Main
+      if: ${{ matrix.os != "windows-latest"}}
       run: |
           go mod tidy
           go build -o ${{ env.app_name }} cmd/main/main.go
+    
+    - name: Build Executable Main
+      if: ${{ matrix.os == "windows-latest"}}
+      run: |
+          go mod tidy
+          go build -o ${{ env.app_name }}.exe cmd/main/main.go
           
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v3.1.2
