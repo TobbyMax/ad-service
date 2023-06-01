@@ -67,11 +67,18 @@ jobs:
           go build -o ${{ env.app_name_exe }} cmd/main/main.go
     
           
-    - name: Upload an Artefact
+    - name: Upload an Object
       uses: actions/upload-artifact@v3.1.2
       with:
         name: app_matrix
         path: ${{ env.app_name }}
+        retention-days: 7
+  
+    - name: Upload an Executable
+      uses: actions/upload-artifact@v3.1.2
+      with:
+        name: app_matrix
+        path: ${{ env.app_name_exe }}
         retention-days: 7
         
   upload:
