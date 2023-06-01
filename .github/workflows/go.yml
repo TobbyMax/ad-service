@@ -1,0 +1,112 @@
+# This workflow will build a golang project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-go
+
+name: Go Build & Upload
+
+on:
+  push:
+    branches: [ "main", "master", "develop" ]
+  pull_request:
+    branches: [ "main", "master", "develop" ]
+
+jobs:
+
+  build:
+    name: build app
+    strategy:
+      fail-fast: true
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    env:
+      app_name: app_${{ matrix.os }}.o
+      app_name_exe: app_${{ matrix.os }}.o
+    steps:
+    - name: Cache Go modules
+      uses: actions/cache@preview
+      with:
+        path: ~/go/pkg/mod
+        key: ${{ matrix.os }}-build-${{ hashFiles('**/go.sum') }}
+        restore-keys: |
+          ${{ matrix.OS }}-build-${{ env.cache-name }}-
+          ${{ matrix.OS }}-build-
+          ${{ matrix.OS }}-
+    
+    - uses: actions/checkout@v3
+
+    - name: Set up Go
+      uses: actions/setup-go@v3
+      with:
+        go-version: 'stable'
+
+    - name: Build
+      run: |
+          go mod tidy
+          go build -v ./...
+    
+    - name: Lint
+      continue-on-error: true
+      uses: golangci/golangci-lint-action@v3
+      with:
+        version: latest
+        working-directory: .
+
+    - name: Test
+      run: |
+          go mod tidy
+          go test  -v -race -coverpkg=./... ./...
+    
+    - name: Build Main
+      run: |
+          go mod tidy
+          go build -o ${{ env.app_name }} cmd/main/main.go
+    
+          
+    - name: Upload an Artefact
+      uses: actions/upload-artifact@v3.1.2
+      with:
+        name: app_matrix
+        path: ${{ env.app_name }}
+        retention-days: 5
+        
+  upload:
+    name: upload & notify
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download Artefacts
+        uses: actions/download-artifact@v3
+        with:
+          name: app_matrix
+          
+      - name: Archive files
+        run: |
+          sudo apt-get update
+          sudo apt-get install zip
+          zip -r app-builds.zip app_*.o
+      
+      - name: Upload to Google Drive
+        uses: adityak74/google-drive-upload-git-action@main
+        with:
+          credentials: ${{ secrets.DRIVE_CREDENTIALS }}
+          filename: "app-builds.zip"
+          folderId: ${{ secrets.DRIVE_FOLDER_ID }}
+          name: "app-builds.zip"
+          overwrite: "true"
+        
+          
+      - name: Send message to telegram
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          document: app_*.o
+          message: |
+            ${{ github.actor }} created commit:
+            Commit message: ${{ github.event.commits[0].message }}
+
+            Repository: https://github.com/${{ github.repository }}
+
+            See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
+            
+            Google Drive: ${{ secrets.DRIVE_LINK }}
