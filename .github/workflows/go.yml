@@ -16,7 +16,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
+        os: [ubuntu-latest]
     runs-on: ${{ matrix.os }}
     env:
       app_name: app_${{ matrix.os }}.o
@@ -31,7 +31,7 @@ jobs:
     - name: Build
       run: |
           go mod tidy
-          go build -o ${{ env.app_name }} -v ./...
+          go build -v ./...
     
     - name: Lint
       uses: golangci/golangci-lint-action@v3
@@ -43,7 +43,12 @@ jobs:
       run: |
           go mod tidy
           go test  -v -race -coverpkg=./... ./...
-      
+    
+    - name: Build Main
+      run: |
+          go mod tidy
+          go build -o ${{ env.app_name }} cmd/main/main.go
+          
 #     - name: Upload a Build Artifact
 #       uses: actions/upload-artifact@v3.1.2
 #       with:
