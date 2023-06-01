@@ -3,9 +3,9 @@ package app
 import (
 	"context"
 	"fmt"
+	"github.com/TobbyMax/ad-service.git/internal/ads"
+	"github.com/TobbyMax/ad-service.git/internal/user"
 	"github.com/TobbyMax/validator"
-	"homework10/internal/ads"
-	"homework10/internal/user"
 	"time"
 )
 

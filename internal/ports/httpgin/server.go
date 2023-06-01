@@ -10,7 +10,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"homework10/internal/app"
+	"github.com/TobbyMax/ad-service.git/internal/app"
 )
 
 func LoggerMiddleWare(c *gin.Context) {

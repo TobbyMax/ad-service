@@ -2,10 +2,10 @@ package grpc
 
 import (
 	"context"
+	"github.com/TobbyMax/ad-service.git/internal/app"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 	"google.golang.org/protobuf/types/known/emptypb"
-	"homework10/internal/app"
 	"net/mail"
 )
 

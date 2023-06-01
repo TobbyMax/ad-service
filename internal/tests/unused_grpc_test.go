@@ -1,8 +1,8 @@
 package tests
 
 import (
+	grpcSvc "github.com/TobbyMax/ad-service.git/internal/ports/grpc"
 	"github.com/stretchr/testify/assert"
-	grpcSvc "homework10/internal/ports/grpc"
 	"testing"
 )
 

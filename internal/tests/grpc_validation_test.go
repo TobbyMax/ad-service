@@ -1,7 +1,7 @@
 package tests
 
 import (
-	grpcPort "homework10/internal/ports/grpc"
+	grpcPort "github.com/TobbyMax/ad-service.git/internal/ports/grpc"
 	"strings"
 )
 

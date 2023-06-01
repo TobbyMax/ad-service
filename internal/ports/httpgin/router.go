@@ -1,8 +1,8 @@
 package httpgin
 
 import (
+	"github.com/TobbyMax/ad-service.git/internal/app"
 	"github.com/gin-gonic/gin"
-	"homework10/internal/app"
 )
 
 func AppRouter(r *gin.RouterGroup, a app.App) {

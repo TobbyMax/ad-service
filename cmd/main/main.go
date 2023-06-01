@@ -2,14 +2,14 @@ package main
 
 import (
 	"context"
+	"github.com/TobbyMax/ad-service.git/internal/adapters/adrepo"
+	"github.com/TobbyMax/ad-service.git/internal/app"
+	"github.com/TobbyMax/ad-service.git/internal/graceful"
+	grpcSvc "github.com/TobbyMax/ad-service.git/internal/ports/grpc"
+	"github.com/TobbyMax/ad-service.git/internal/ports/httpgin"
 	"github.com/jackc/pgx/v5"
 	"golang.org/x/sync/errgroup"
 	"google.golang.org/grpc"
-	"homework10/internal/adapters/adrepo"
-	"homework10/internal/app"
-	"homework10/internal/graceful"
-	grpcSvc "homework10/internal/ports/grpc"
-	"homework10/internal/ports/httpgin"
 	"os"
 
 	"log"

@@ -3,13 +3,13 @@ package tests
 import (
 	"context"
 	"errors"
+	"github.com/TobbyMax/ad-service.git/internal/adapters/adrepo"
+	"github.com/TobbyMax/ad-service.git/internal/app"
+	grpcPort "github.com/TobbyMax/ad-service.git/internal/ports/grpc"
 	"github.com/stretchr/testify/suite"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 	"google.golang.org/grpc/test/bufconn"
-	"homework10/internal/adapters/adrepo"
-	"homework10/internal/app"
-	grpcPort "homework10/internal/ports/grpc"
 	"log"
 	"net"
 	"time"
@@ -21,11 +21,12 @@ var (
 	ErrGRPCForbidden   = errors.New("rpc error: code = PermissionDenied desc = forbidden")
 	ErrInvalidEmail    = errors.New("rpc error: code = InvalidArgument desc = mail: missing '@' or angle-addr")
 	ErrMissingArgument = errors.New("rpc error: code = InvalidArgument desc = required argument is missing")
-	ErrMockInternal    = errors.New("rpc error: code = Internal desc = mock error")
-	ErrValidationMock  = errors.New("rpc error: code = InvalidArgument desc = ")
-	ErrDateMock        = errors.New("rpc error: code = InvalidArgument desc = parsing time \"abc\" as \"2006-01-02\": cannot parse \"abc\" as \"2006\"")
+	ErrMockgithub.com/TobbyMax/ad-service.git/internal = errors.New(
+"rpc error: code = github.com/TobbyMax/ad-service.git/internal desc = mock error"
 )
-
+ErrValidationMock  = errors.New("rpc error: code = InvalidArgument desc = ")
+ErrDateMock = errors.New("rpc error: code = InvalidArgument desc = parsing time \"abc\" as \"2006-01-02\": cannot parse \"abc\" as \"2006\"")
+)
 type GRPCSuite struct {
 	suite.Suite
 	Repo     *adrepo.RepositoryMap

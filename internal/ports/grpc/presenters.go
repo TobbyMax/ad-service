@@ -2,11 +2,11 @@ package grpc
 
 import (
 	"errors"
+	"github.com/TobbyMax/ad-service.git/internal/ads"
+	"github.com/TobbyMax/ad-service.git/internal/app"
+	"github.com/TobbyMax/ad-service.git/internal/user"
 	"github.com/TobbyMax/validator"
 	"google.golang.org/grpc/codes"
-	"homework10/internal/ads"
-	"homework10/internal/app"
-	"homework10/internal/user"
 )
 
 var ErrMissingArgument = errors.New("required argument is missing")

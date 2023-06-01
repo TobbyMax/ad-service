@@ -2,10 +2,10 @@ package tests
 
 import (
 	"context"
-	"homework10/internal/adapters/adrepo"
-	"homework10/internal/ads"
-	"homework10/internal/app"
-	"homework10/internal/user"
+	"github.com/TobbyMax/ad-service.git/internal/adapters/adrepo"
+	"github.com/TobbyMax/ad-service.git/internal/ads"
+	"github.com/TobbyMax/ad-service.git/internal/app"
+	"github.com/TobbyMax/ad-service.git/internal/user"
 	"log"
 	"testing"
 )

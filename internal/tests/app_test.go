@@ -2,13 +2,13 @@ package tests
 
 import (
 	"context"
+	"github.com/TobbyMax/ad-service.git/internal/ads"
+	"github.com/TobbyMax/ad-service.git/internal/app"
+	"github.com/TobbyMax/ad-service.git/internal/tests/mocks"
+	"github.com/TobbyMax/ad-service.git/internal/user"
 	"github.com/TobbyMax/validator"
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/suite"
-	"homework10/internal/ads"
-	"homework10/internal/app"
-	"homework10/internal/tests/mocks"
-	"homework10/internal/user"
 	"testing"
 )
 

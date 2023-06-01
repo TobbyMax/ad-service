@@ -2,9 +2,9 @@ package httpgin
 
 import (
 	"errors"
+	"github.com/TobbyMax/ad-service.git/internal/app"
 	"github.com/TobbyMax/validator"
 	"github.com/gin-gonic/gin"
-	"homework10/internal/app"
 	"io"
 	"net/http"
 	"strconv"

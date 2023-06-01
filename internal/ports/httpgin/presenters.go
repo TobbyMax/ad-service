@@ -1,10 +1,10 @@
 package httpgin
 
 import (
+	"github.com/TobbyMax/ad-service.git/internal/ads"
+	"github.com/TobbyMax/ad-service.git/internal/app"
+	"github.com/TobbyMax/ad-service.git/internal/user"
 	"github.com/gin-gonic/gin"
-	"homework10/internal/ads"
-	"homework10/internal/app"
-	"homework10/internal/user"
 )
 
 type createUserRequest struct {
