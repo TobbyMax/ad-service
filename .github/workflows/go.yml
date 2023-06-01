@@ -69,19 +69,19 @@ jobs:
         with:
           name: app_matrix
           
-#       - name: Archive files
-#         run: |
-#           sudo apt-get update
-#           sudo apt-get install zip
-#           zip -r archive.zip app_matrix
+      - name: Archive files
+        run: |
+          sudo apt-get update
+          sudo apt-get install zip
+          zip -r archive.zip app_*.o
       
       - name: Upload to Google Drive
         uses: adityak74/google-drive-upload-git-action@main
         with:
           credentials: ${{ secrets.DRIVE_CREDENTIALS }}
-          filename: "app_matrix"
+          filename: "archive.zip"
           folderId: ${{ secrets.DRIVE_FOLDER_ID }}
-          name: "app_matrix" # optional string
+          name: "archive.zip" # optional string
           overwrite: "true" # optional boolean
         
           
