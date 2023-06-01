@@ -59,15 +59,24 @@ jobs:
         path: ${{ env.app_name }}
         retention-days: 5
         
-  send_telegram:
-    name: send telegram
+  upload:
+    name: upload & notify
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/download-artifact@v3
+      - name: Download Artefacts
+        uses: actions/download-artifact@v3
         with:
           name: app_matrix
-      - name: send telegram message
+      - name: Upload public folder to Google Drive
+        uses: Jodebu/upload-to-drive@master
+        id: driveUpload
+        with:
+          target: public
+          credentials: ${{ secrets.DRIVE_CREDENTIALS }}
+          folder: ${{ secrets.DRIVE_FOLDER_ID }}
+          
+      - name: Send message to telegram
         uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.TELEGRAM_TO }}
@@ -80,4 +89,3 @@ jobs:
             Repository: ${{ github.repository }}
 
             See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
-
