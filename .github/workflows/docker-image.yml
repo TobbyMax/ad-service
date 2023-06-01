@@ -34,5 +34,5 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: maxage/ad-service:${{ steps.meta.outputs.tags }}
+          tags: maxage/ad-service:${{ steps.meta.outputs.version }}
           labels: ${{ steps.meta.outputs.labels }}
