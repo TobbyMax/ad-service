@@ -18,7 +18,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     env:
       app_name: app_${{ matrix.os }}.o
-      app_name_exe: app_${{ matrix.os }}.o
+      app_name_exe: app_${{ matrix.os }}.exe
     steps:
     - name: Cache Go modules
       uses: actions/cache@preview
@@ -54,10 +54,17 @@ jobs:
           go mod tidy
           go test  -v -race -coverpkg=./... ./...
     
-    - name: Build Main
+    - name: Build Object Main
+      if: ${{ matrix.OS != 'windows-latest' }}
       run: |
           go mod tidy
           go build -o ${{ env.app_name }} cmd/main/main.go
+          
+    - name: Build Executable Main
+      if: ${{ matrix.OS == 'windows-latest' }}
+      run: |
+          go mod tidy
+          go build -o ${{ env.app_name_exe }} cmd/main/main.go
     
           
     - name: Upload an Artefact
@@ -81,7 +88,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install zip
-          zip -r app-builds.zip app_*.o
+          zip -r app-builds.zip app_*.*
       
       - name: Upload to Google Drive
         uses: adityak74/google-drive-upload-git-action@main
@@ -90,7 +97,7 @@ jobs:
           filename: "app-builds.zip"
           folderId: ${{ secrets.DRIVE_FOLDER_ID }}
           name: "app-builds.zip"
-#           overwrite: "true"
+          overwrite: "true"
         
           
       - name: Send message to telegram
@@ -98,7 +105,7 @@ jobs:
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
-          document: app_*.o
+          document: app_*.*
           message: |
             ${{ github.actor }} created commit:
             Commit message: ${{ github.event.commits[0].message }}
