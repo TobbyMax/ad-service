@@ -46,13 +46,13 @@ jobs:
           go test  -v -race -coverpkg=./... ./...
     
     - name: Build Object Main
-      if: ${{ matrix.os != "windows-latest"}}
+      if: matrix.os != 'windows-latest'
       run: |
           go mod tidy
           go build -o ${{ env.app_name }} cmd/main/main.go
     
     - name: Build Executable Main
-      if: ${{ matrix.os == "windows-latest"}}
+      if: matrix.os == 'windows-latest'
       run: |
           go mod tidy
           go build -o ${{ env.app_name }}.exe cmd/main/main.go
