@@ -1,13 +1,13 @@
 # This workflow will build a golang project
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-go
 
-name: Go
+name: Go Build & Upload
 
 on:
   push:
-    branches: [ "main", "master" ]
+    branches: [ "main", "master", "develop" ]
   pull_request:
-    branches: [ "main", "master" ]
+    branches: [ "main", "master", "develop" ]
 
 jobs:
 
@@ -22,6 +22,16 @@ jobs:
       app_name: app_${{ matrix.os }}.o
       app_name_exe: app_${{ matrix.os }}.o
     steps:
+    - name: Cache Go modules
+      uses: actions/cache@preview
+      with:
+        path: ~/go/pkg/mod
+        key: ${{ matrix.os }}-build-${{ hashFiles('**/go.sum') }}
+        restore-keys: |
+          ${{ matrix.OS }}-build-${{ env.cache-name }}-
+          ${{ matrix.OS }}-build-
+          ${{ matrix.OS }}-
+    
     - uses: actions/checkout@v3
 
     - name: Set up Go
