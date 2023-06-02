@@ -1,11 +1,7 @@
 
 name: Go Build & Upload
 
-on:
-  push:
-    branches: [ "main", "master", "develop" ]
-  pull_request:
-    branches: [ "main", "master" ]
+on: [push, pull_request]
 
 jobs:
 
