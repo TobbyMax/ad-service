@@ -15,6 +15,7 @@ jobs:
     env:
       app_name: app_${{ matrix.os }}.o
       app_name_exe: app_${{ matrix.os }}.exe
+      
     steps:
     - name: Cache Go modules
       uses: actions/cache@preview
