@@ -50,4 +50,4 @@ jobs:
         run: docker pull maxage/ad-service:${{ steps.meta.outputs.version }}
         
       - name: Run image
-        run: docker run -p 8080:8080 -p 18080:18080  ad-app
+        run: docker run -d -p 8080:8080 -p 18080:18080  ad-app
