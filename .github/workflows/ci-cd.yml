@@ -179,3 +179,14 @@ jobs:
         uses: actions/checkout@v3
       - name: Release
         uses: softprops/action-gh-release@v1
+    
+      - name: Send message to telegram
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: |
+            ${{ github.actor }} created new release:
+            Tag: ${{ github.ref_name }}
+
+            Repository: https://github.com/${{ github.repository }}
