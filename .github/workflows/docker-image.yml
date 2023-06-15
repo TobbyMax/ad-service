@@ -36,7 +36,7 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
   
   deploy:
-    name: Pull image and Run it
+    name: Pull & Run Image
     needs: push_to_registry
     runs-on: self-hosted
     steps:
@@ -45,9 +45,6 @@ jobs:
         uses: docker/metadata-action@v4.4.0
         with:
           images: my-docker-hub-namespace/my-docker-hub-repository
-          
-#       - name: Pull image
-#         run: docker pull maxage/ad-service:${{ steps.meta.outputs.version }}
         
       - name: Run image
         run: docker run -d -p 8080:8080 -p 18080:18080 maxage/ad-service:${{ steps.meta.outputs.version }}
