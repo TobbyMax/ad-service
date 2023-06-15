@@ -105,7 +105,7 @@ jobs:
           credentials: ${{ secrets.DRIVE_CREDENTIALS }}
           filename: "app-builds.zip"
           folderId: ${{ secrets.DRIVE_FOLDER_ID }}
-          name: "app-builds.zip"
+          name: "app-builds-${{ github.ref_name }}.zip"
           overwrite: "true"
         
       - name: Send message to telegram
