@@ -1,11 +1,13 @@
 name: Build & Publish Docker image
 
-on:
+on: 
   release:
     types: [published]
+  pull_request:
+    branches: [main, master, develop]
 
 jobs:
-  push_to_registry:
+  build_image:
     name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
     steps:
@@ -32,3 +34,18 @@ jobs:
           push: true
           tags: maxage/ad-service:${{ steps.meta.outputs.version }}
           labels: ${{ steps.meta.outputs.labels }}
+  
+  deploy:
+    name: Pull & Run Image
+    needs: build_image
+    runs-on: self-hosted
+    steps:
+      - name: Extract metadata for Docker
+        id: meta
+        uses: docker/metadata-action@v4.4.0
+        with:
+          images: my-docker-hub-namespace/my-docker-hub-repository
+        
+      - name: Run image
+        run: docker run -d -p 8080:8080 -p 18080:18080 maxage/ad-service:${{ steps.meta.outputs.version }}
+        if: ${{ github.event_name == 'release'  }}
