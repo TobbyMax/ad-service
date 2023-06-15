@@ -166,6 +166,8 @@ jobs:
         with:
           images: my-docker-hub-namespace/my-docker-hub-repository
         
+      - name: Stop containers
+        run: docker stop $(docker ps -a -q)
       - name: Run image
         run: docker run -d -p 8080:8080 -p 18080:18080 maxage/ad-service:${{ steps.meta.outputs.version }}
 
@@ -190,3 +192,5 @@ jobs:
             Tag: ${{ github.ref_name }}
 
             Repository: https://github.com/${{ github.repository }}
+            
+            DockerHub: https://hub.docker.com/r/maxage/ad-service/tags
