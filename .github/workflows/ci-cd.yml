@@ -87,6 +87,7 @@ jobs:
     name: Upload to Drive & Notify
     needs: build
     runs-on: ubuntu-latest
+    if: ${{ github.ref_type != 'tag' }}
     steps:
       - name: Download Artefacts
         uses: actions/download-artifact@v3
