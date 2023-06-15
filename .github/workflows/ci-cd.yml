@@ -1,5 +1,5 @@
 
-name: Go Build & Upload
+name: Go CI & CD
 
 on: 
   pull_request: 
@@ -126,7 +126,7 @@ jobs:
             Google Drive: ${{ secrets.DRIVE_LINK }}
             
   build_image:
-    name: Push Docker Image to Docker Hub
+    name: Build & Push Docker
     needs: build
     runs-on: ubuntu-latest
     steps:
@@ -155,7 +155,7 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
   
   deploy:
-    name: Pull & Run Image
+    name: Run Image
     needs: build_image
     runs-on: self-hosted
     if: ${{ github.ref_type == 'tag' }}
