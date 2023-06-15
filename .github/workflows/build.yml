@@ -1,7 +1,10 @@
 
 name: Go Build & Upload
 
-on: [push, pull_request]
+on: 
+  pull_request: 
+  push:
+     branches: [main, master, develop]
 
 jobs:
 
@@ -109,7 +112,7 @@ jobs:
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
-          document: app_*.*
+#           document: app_*.*
           message: |
             ${{ github.actor }} created commit:
             Commit message: ${{ github.event.commits[0].message }}
