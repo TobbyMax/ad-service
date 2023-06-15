@@ -15,7 +15,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        os: [ubuntu-latest]
+        os: [ubuntu-latest, windows-latest, macos-latest]
     runs-on: ${{ matrix.os }}
     env:
       app_name: app_${{ matrix.os }}.o
@@ -124,8 +124,11 @@ jobs:
             
             Google Drive: ${{ secrets.DRIVE_LINK }}
             
+            DockerHub: ${{ secrets.DOCKERHUB_LINK }}
+
+            
   build_image:
-    name: Build & Push Docker
+    name: Build & Push Docker Image
     needs: build
     runs-on: ubuntu-latest
     steps:
@@ -192,4 +195,4 @@ jobs:
 
             Repository: https://github.com/${{ github.repository }}
             
-            DockerHub: https://hub.docker.com/r/maxage/ad-service/tags
+            DockerHub: ${{ secrets.DOCKERHUB_LINK }}
