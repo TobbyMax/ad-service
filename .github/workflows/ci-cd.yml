@@ -67,8 +67,7 @@ jobs:
       run: |
           go mod tidy
           go build -o ${{ env.app_name_exe }} cmd/main/main.go
-    
-          
+      
     - name: Upload an Object
       uses: actions/upload-artifact@v3.1.2
       with:
@@ -109,7 +108,6 @@ jobs:
           name: "app-builds.zip"
           overwrite: "true"
         
-          
       - name: Send message to telegram
         uses: appleboy/telegram-action@master
         with:
