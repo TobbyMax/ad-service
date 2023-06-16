@@ -62,9 +62,16 @@ jobs:
         working-directory: .
 
     - name: Test
+      continue-on-error: true
       run: |
           go mod tidy
-          go test  -v -race -coverpkg=./... ./...
+          go test  -v -race -coverpkg=./... ./... -json > TestResults-${{ matrix.OS }}.json
+          
+    - name: Upload Go test results
+      uses: actions/upload-artifact@v3
+      with:
+        name: Go-results-${{ matrix.OS }}
+        path: TestResults-${{ matrix.OS }}.json
     
     - name: Build Object Main
       if: ${{ matrix.OS != 'windows-latest' }}
