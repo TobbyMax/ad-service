@@ -45,6 +45,11 @@ jobs:
           go mod tidy
           go build -v ./...
     
+    - name: Gofmt
+      uses: Jerome1337/gofmt-action@v1.0.5
+      with:
+        gofmt-path: '.'
+        gofmt-flags: '-l -d'
     - name: Lint
       continue-on-error: true
       uses: golangci/golangci-lint-action@v3
