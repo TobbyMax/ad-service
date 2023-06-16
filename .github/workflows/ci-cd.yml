@@ -55,19 +55,18 @@ jobs:
       run: staticcheck ./...
       
     - name: Lint
-      continue-on-error: true
       uses: golangci/golangci-lint-action@v3
       with:
         version: latest
         working-directory: .
 
     - name: Test
-      continue-on-error: true
       run: |
           go mod tidy
           go test  -v -race -coverpkg=./... ./... -json > TestResults-${{ matrix.OS }}.json
           
     - name: Upload Go test results
+      if: always()
       uses: actions/upload-artifact@v3
       with:
         name: Go-results-${{ matrix.OS }}
