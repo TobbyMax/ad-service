@@ -45,6 +45,15 @@ jobs:
           go mod tidy
           go build -v ./...
     
+    - name: Run go vet
+      run: go vet ./...
+
+    - name: Install staticcheck
+      run: go install honnef.co/go/tools/cmd/staticcheck@latest
+
+    - name: Run staticcheck
+      run: staticcheck ./...
+      
     - name: Lint
       continue-on-error: true
       uses: golangci/golangci-lint-action@v3
