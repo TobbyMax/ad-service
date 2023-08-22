@@ -8,7 +8,7 @@ require (
 	github.com/grpc-ecosystem/go-grpc-middleware v1.4.0
 	github.com/jackc/pgx/v5 v5.4.3
 	github.com/stretchr/testify v1.8.4
-	golang.org/x/sync v0.2.0
+	golang.org/x/sync v0.3.0
 	google.golang.org/grpc v1.55.0
 	google.golang.org/protobuf v1.30.0
 )
