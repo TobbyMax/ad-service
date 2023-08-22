@@ -6,7 +6,7 @@ require (
 	github.com/TobbyMax/validator v1.2.3
 	github.com/gin-gonic/gin v1.9.1
 	github.com/grpc-ecosystem/go-grpc-middleware v1.4.0
-	github.com/jackc/pgx/v5 v5.3.1
+	github.com/jackc/pgx/v5 v5.4.3
 	github.com/stretchr/testify v1.8.4
 	golang.org/x/sync v0.2.0
 	google.golang.org/grpc v1.55.0
