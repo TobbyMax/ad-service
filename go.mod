@@ -3,7 +3,7 @@ module github.com/TobbyMax/ad-service.git
 go 1.20
 
 require (
-	github.com/TobbyMax/validator v1.2.3
+	github.com/TobbyMax/validator v1.3.0
 	github.com/gin-gonic/gin v1.9.1
 	github.com/grpc-ecosystem/go-grpc-middleware v1.4.0
 	github.com/jackc/pgx/v5 v5.4.3

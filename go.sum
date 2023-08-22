@@ -2,6 +2,8 @@ cloud.google.com/go v0.26.0/go.mod h1:aQUYkXzVsufM+DwF1aE+0xfcU+56JwCaLick0ClmMT
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
 github.com/TobbyMax/validator v1.2.3 h1:0EtBDhEEek4BTFXJ8BR4hoW3dcCdg3M8qyhZyecOpaA=
 github.com/TobbyMax/validator v1.2.3/go.mod h1:/pZucQOUQzNPgUH0kJ1hxl8CJ3szwFd5Ly8sO/KoKrQ=
+github.com/TobbyMax/validator v1.3.0 h1:onWa4Zu7Xl3GwoVi+SWSRHwSbGVLNEfoNX15h8vWH54=
+github.com/TobbyMax/validator v1.3.0/go.mod h1:/pZucQOUQzNPgUH0kJ1hxl8CJ3szwFd5Ly8sO/KoKrQ=
 github.com/benbjohnson/clock v1.1.0/go.mod h1:J11/hYXuz8f4ySSvYwY0FKfm+ezbsZBKZxNJlLklBHA=
 github.com/bytedance/sonic v1.5.0/go.mod h1:ED5hyg4y6t3/9Ku1R6dU/4KyJ48DZ4jPhfY1O2AihPM=
 github.com/bytedance/sonic v1.9.1 h1:6iJ6NqdoxCDr6mbY8h18oSO+cShGSMRGCEo7F2h0x8s=
