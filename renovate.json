@@ -3,6 +3,7 @@
   "extends": [
     "config:base"
   ],
+  "extendsIgnore": ["closed"],
   "extendsConfig": {
     "prBodyCommand": "echo Working",
     "prTitleCommand": "echo Working"
