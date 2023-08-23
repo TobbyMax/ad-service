@@ -12,7 +12,7 @@
       "packagePatterns": [
         "*"
       ],
-      "automerge": true
+      "automerge": false
     },
     {
       "depTypeList": [ "devDependencies", "require-dev" ],
