@@ -3,11 +3,6 @@
   "extends": [
     "config:base"
   ],
-  "extendsIgnore": ["closed"],
-  "extendsConfig": {
-    "prBodyCommand": "echo Working",
-    "prTitleCommand": "echo Working"
-  },
   "packageRules": [
     {
       "packagePatterns": [
@@ -15,6 +10,14 @@
       ],
       "automerge": false
     },
+    {
+      "matchUpdateTypes": ["minor", "patch"],
+      "branches": ["master"],
+      "automerge": true,
+      "prBody": "[Custom Command]",
+      "prTitle": "[Custom Command]",
+      "prCommand": "echo Working"
+    }
     {
       "depTypeList": [ "devDependencies", "require-dev" ],
       "updateTypes": [ "patch", "minor", "digest"],
