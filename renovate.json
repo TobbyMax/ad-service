@@ -17,7 +17,7 @@
       "prBody": "[Custom Command]",
       "prTitle": "[Custom Command]",
       "prCommand": "echo Working"
-    }
+    },
     {
       "depTypeList": [ "devDependencies", "require-dev" ],
       "updateTypes": [ "patch", "minor", "digest"],
