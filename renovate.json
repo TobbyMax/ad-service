@@ -6,7 +6,7 @@
   "extendsConfig": {
     "prBodyCommand": "echo Working",
     "prTitleCommand": "echo Working"
-  }
+  },
   "packageRules": [
     {
       "packagePatterns": [
